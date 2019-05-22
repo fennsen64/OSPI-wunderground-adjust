@@ -1,0 +1,140 @@
+$def with(m_vals)
+
+$var title: $_('OpenSprinkler Pi Weather-based Water Level')
+$var page: plugins
+<script>
+    // Initialize behaviors
+    jQuery(document).ready(function(){
+
+        jQuery("#cSubmit").click(function() {
+            jQuery("#pluginForm").submit();
+        });
+        jQuery("button#cCancel").click(function(){
+            window.location="/";
+        });
+
+    });
+</script>
+
+<div id="plugin">
+    <div class="title">$_('Weather-based Water Level')</div>
+    <p>$_('When weather-based water level is enabled, the weather will be checked every hour and the water level will be adjusted accordingly.')</p>
+    <form id="pluginForm" action="/luwa" method="get">
+        <table class="optionList">
+            <tr>
+                <td style='text-transform: none;'>$_('Use Automatic Water Level Adjustment      '):</td>
+                <td>
+                    <input name='auto_wl' type='checkbox'${" checked" if m_vals['auto_wl'] == "on" else ""}>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Min percentage'):</td>
+                <td>
+                    <input name='wl_min' type='number' min="0" max="100" value=$m_vals["wl_min"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Max percentage'):</td>
+                <td>
+                    <input name='wl_max' type='number' min="100" max="1000" value=$m_vals["wl_max"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Water needed per day (mm)'):</td>
+                <td>
+                    <input name='water_base_per_day' type='number' min="1" max="100" value=$m_vals["water_base_per_day"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('History days used'):</td>
+                <td>
+                    <input name='days_history' type='number' min="0" max="7" value=$m_vals["days_history"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Forecast days used'):</td>
+                <td>
+                    <input name='days_forecast' type='number' min="0" max="5" value=$m_vals["days_forecast"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Wunderground API-V3 Key'):</td>
+                <td>
+                    <input name='wapikey' type='text' value=$m_vals["wapikey"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('WU Update Rate (Sek)'):</td>
+                <td>
+                    <input name='updaterate' type='number' min="0" max="86400" value=$m_vals["updaterate"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('WU Language for API-Data (e.g. de-DE)'):</td>
+                <td>
+                    <input name='country' type='text' value=$m_vals["country"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('WU City (not yet used)'):</td>
+                <td>
+                    <input name='city' type='text' value=$m_vals["city"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('WU Station-ID History (PWS)'):</td>
+                <td>
+                    <input name='stationid_HIST' type='text' value=$m_vals["stationid_HIST"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('WU Station-ID Forecast(e.g. Airport Code)'):</td>
+                <td>
+                    <input name='stationid_FC' type='text' value=$m_vals["stationid_FC"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('WU Station Forecast Type(e.g. icaoCode'):</td>
+                <td>
+                    <input name='stationid_FC_type' type='text' value=$m_vals["stationid_FC_type"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Rain Forecast Probability Factor (in %)'):</td>
+                <td>
+                    <input name='rain_forecast_propability' type='number' min="0" max="100" value=$m_vals["rain_forecast_propability"]>
+                </td>
+            </tr>
+            <tr>
+                <td style='text-transform: none;'>$_('Status'):</td>
+                <td>
+                    <textarea style="font-family: monospace;" rows="10" cols="45" readonly>$m_vals['status']</textarea>
+                </td>
+            </tr>
+        </table>
+		<table class="optionList">
+            <tr>
+                <td style='text-transform: none;'>$_('Use MQTT Publish of Water Level Adj.:'):</td>
+                <td>
+                    <input name='auto_mqtt' type='checkbox'${" checked" if m_vals['auto_mqtt'] == "on" else ""}>
+                </td>
+            </tr>
+			<tr>
+                <td style='text-transform: none;'>$_('MQTT Broker IP Address'):</td>
+                <td>
+                    <input name='broker_address' type='text' value=$m_vals["broker_address"]>
+                </td>
+			</tr>
+			<tr>	
+				<td style='text-transform: none;'>$_('MQTT Publish Topic'):</td>
+                <td>
+                    <input name='publish_topic' type='text' value=$m_vals["publish_topic"]>
+                </td>
+            </tr>
+		</table>
+    </form>
+</div>
+<div id="controls">
+    <button id="cSubmit" class="submit"><b>$_('Submit')</b></button>
+    <button id="cCancel" class="cancel danger">$_('Cancel')</button>
+</div>
