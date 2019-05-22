@@ -1,6 +1,5 @@
-OSPI-wunderground-adjust
-Adjust the water-level on OpenSprinkler based on Weatherunderground data, migrated to new WU API (V3)
-Version 1.3 - 22.05.2019 
+This script adjust the weather-based water-level on OpenSprinkler based on Weatherunderground data, migrated to new WU API (V3)
+# Version 1.3 - 22.05.2019 
 All adjustments to the original OSPI included scripts (by Dan-in-CA) found on https://github.com/Dan-in-CA/SIP
      made by A. von de Fenn (fennsen) in May 2019. The code is under GPL licence.
 Some parts of this code also includes portions from simonvanderveldt/mqtt-wunderground on GITHUB
