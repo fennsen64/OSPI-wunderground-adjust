@@ -12,9 +12,10 @@ Attention: This script is only valid and useable for the python version of the O
 if the plugin is activated in the plugin section (see parameter "auto_wl": "on" in the config file  "weather_level_adj.json",
    it multiplies the main water level (normally 100%) with the value of wl_weather (e.g. 100% * 120%) and adjusts the programs running time to the appropriate level (e.g. 100% = 60 minutes run time is  given as default, it goes to 120% run time which is +12 minutes (+20%): 72 minutes 
 
-# Hint: you can enable or disable this weather-based adjustment in the STATIONS menu per station. This is useful if you 
-# have stations/programms who should always run with the given main
-#  'Water Level' without the plugin adjustments
+# Hint: you can enable or disable this weather-based adjustment in the STATIONS menu per station. 
+This is useful if you 
+ have stations/programms who should always run with the given main
+ 'Water Level' without the plugin adjustments
 
 # Installation: This version needs JSON and the PAHO-MQTT client
   1. Install json and the paho-mqtt client via npm on the raspberry
